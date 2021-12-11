@@ -1,7 +1,12 @@
 export type Spacing = {
-  start: () => void;
-};
+  start: () => void
+}
 
-export type LineBorder = 'none' | 'x' | 'y';
-export type Direction = 'top' | 'right' | 'bottom' | 'left';
-export type PlaceholderType = 'selected' | 'target';
+interface person {
+  name: string
+  age: number
+}
+
+export type LineBorder = 'none' | 'x' | 'y'
+export type Direction = 'top' | 'right' | 'bottom' | 'left'
+export type PlaceholderType = 'selected' | 'target'
