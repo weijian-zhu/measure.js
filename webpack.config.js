@@ -12,7 +12,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
     library: {
-      name: "Spacing",
+      name: "measure",
       type: "window",
     },
   },
@@ -43,7 +43,7 @@ module.exports = {
   },
   plugins: [
     new webpack.BannerPlugin({
-      banner: `/*!\n * Spacing.js v${version}\n * Copyright (c) 2021 Steven Lei\n * Released under the MIT License.\n*/`,
+      banner: `/*!\n * measure.js v${version}\n * Copyright (c) 2021 weijian zhu\n * Released under the MIT License.\n*/`,
       raw: true,
     }),
   ],

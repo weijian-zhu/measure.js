@@ -1,4 +1,4 @@
-import Spacing from './spacing';
+import Spacing from './spacing'
 
 // Simple, Start.
-Spacing.start();
+Spacing.start()
