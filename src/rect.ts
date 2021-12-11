@@ -47,4 +47,14 @@ export default class Rect {
   outsideAndNOIntersection(other: Rect) {
     return this.outsideAndNOIntersectionY(other) && this.outsideAndNOIntersectionX(other)
   }
+
+  //垂直方向上是否包含另外一个
+  outsideIncludeY(other: Rect) {
+    return this.right >= other.right && this.left <= other.left
+  }
+
+  //水平方向上是否包含另外一个
+  outsideIncludeX(other: Rect) {
+    return this.bottom >= other.bottom && this.top <= other.top
+  }
 }

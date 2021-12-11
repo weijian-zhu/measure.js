@@ -136,13 +136,57 @@ export function placeMarkOutside(rect1: Rect, rect2: Rect, direction: Direction,
       let left = rect2.left > rect1.right ? yLeft : rect2.right
       createDashLine(width, height, top, left, 'y')
     }
+    //水平或者垂直方向空间上有相交的情况
   } else {
-    //水平或者垂直方向空间上有相交的部分
-    let left = rect1.left > rect2.left ? (rect2.right + rect1.left) / 2 : (rect1.right + rect2.left) / 2
-    let height = Math.abs(rect2.top - rect1.bottom)
-    let top = rect2.top > rect1.bottom ? rect1.bottom : rect2.bottom
-    let width = 1
-    createLine(width, height, top, left, '10px', 'y')
+    if (!rect1.outsideAndNOIntersectionY(rect2)) {
+      //垂直方向上有相交
+      let left = rect1.left > rect2.left ? (rect2.right + rect1.left) / 2 : (rect1.right + rect2.left) / 2
+      if (rect1.outsideIncludeY(rect2) || rect2.outsideIncludeY(rect1)) {
+        left = (rect2.width > rect1.width ? rect1.left + rect1.right : rect2.left + rect2.right) / 2
+      }
+      let height = Math.min(Math.abs(rect2.top - rect1.bottom), Math.abs(rect2.bottom - rect1.top))
+      let top = rect2.top > rect1.bottom ? rect1.bottom : rect2.bottom
+      let width = 1
+      createLine(width, height, top, left, `${height}px`, 'x')
+      //---------
+
+      {
+        // 右对右的线
+        let xTop = rect2.left > rect1.left ? (rect1.top + rect1.bottom) / 2 : (rect2.top + rect2.bottom) / 2
+        let xLeft = rect2.left > rect1.left ? rect1.right : rect2.right
+        let xHeight = 1
+        let xWidth = Math.abs(rect2.right - rect1.right)
+        createLine(xWidth, xHeight, xTop, xLeft, `${xWidth}px`, 'y')
+        //画虚线
+        let top = Math.min(xTop, rect2.bottom, rect1.bottom)
+        let height =
+          rect2.left > rect1.left
+            ? Math.min(Math.abs(xTop - rect2.top), Math.abs(xTop - rect2.bottom))
+            : Math.min(Math.abs(xTop - rect1.top), Math.abs(xTop - rect1.bottom))
+        let width = 1
+        let left = Math.max(rect1.right, rect2.right)
+        createDashLine(width, height, top, left, 'x')
+      }
+      {
+        // 左对左的线
+        let xTop = rect2.left > rect1.left ? (rect2.top + rect2.bottom) / 2 : (rect1.top + rect1.bottom) / 2
+        let xLeft = rect2.left > rect1.left ? rect1.left : rect2.left
+        let xHeight = 1
+        let xWidth = Math.abs(rect2.left - rect1.left)
+        createLine(xWidth, xHeight, xTop, xLeft, `${xWidth}px`, 'y')
+        //画虚线
+        let top = Math.min(xTop, rect2.bottom, rect1.bottom)
+        let height =
+          rect2.left > rect1.left
+            ? Math.min(Math.abs(xTop - rect1.bottom), Math.abs(xTop - rect1.top))
+            : Math.min(Math.abs(xTop - rect2.bottom), Math.abs(xTop - rect2.top))
+        let width = 1
+        let left = Math.min(rect1.left, rect2.left)
+        createDashLine(width, height, top, left, 'x')
+      }
+    } else if (!rect1.outsideAndNOIntersectionX(rect2)) {
+      //水平方向上有相交
+    }
   }
 }
 
