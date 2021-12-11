@@ -104,7 +104,7 @@ function createDashLine(width: number, height: number, top: number, left: number
 }
 
 export function placeMarkOutside(rect1: Rect, rect2: Rect, direction: Direction, value: string) {
-  //select dom 和 target dom 并集的情况
+  //select dom 和 target dom 并集outside的情况
   if (rect1.outsideAndNOIntersection(rect2)) {
     //水平和垂直方向没有相交的情况
     // 水平方向
@@ -152,7 +152,6 @@ export function placeMarkOutside(rect1: Rect, rect2: Rect, direction: Direction,
 
       {
         // 右对右的线
-        // let xTop = rect2.left > rect1.left ? (rect1.top + rect1.bottom) / 2 : (rect2.top + rect2.bottom) / 2
         let xTop = rect2.right > rect1.right ? (rect1.top + rect1.bottom) / 2 : (rect2.top + rect2.bottom) / 2
         let xLeft = rect2.right > rect1.right ? rect1.right : rect2.right
         let xHeight = 1
@@ -187,6 +186,51 @@ export function placeMarkOutside(rect1: Rect, rect2: Rect, direction: Direction,
       }
     } else if (!rect1.outsideAndNOIntersectionX(rect2)) {
       //水平方向上有相交
+      let top = rect1.top > rect2.top ? (rect2.bottom + rect1.top) / 2 : (rect1.bottom + rect2.top) / 2
+      if (rect1.outsideIncludeX(rect2) || rect2.outsideIncludeX(rect1)) {
+        top = (rect2.height > rect1.height ? rect1.top + rect1.bottom : rect2.top + rect2.bottom) / 2
+      }
+      let height = 1
+      let left = rect2.left > rect1.right ? rect1.right : rect2.right
+      let width = Math.min(Math.abs(rect2.left - rect1.right), Math.abs(rect2.right - rect1.left))
+      createLine(width, height, top, left, `${width}px`, 'y')
+      {
+        //下对下
+        let xTop = rect2.bottom > rect1.bottom ? rect1.bottom : rect2.bottom
+        let xLeft = rect2.bottom > rect1.bottom ? (rect1.left + rect1.right) / 2 : (rect2.left + rect2.right) / 2
+        let xHeight = Math.abs(rect2.bottom - rect1.bottom)
+        let xWidth = 1
+        createLine(xWidth, xHeight, xTop, xLeft, `${xHeight}px`, 'x')
+        //画虚线
+        let top = Math.max(rect1.bottom, rect2.bottom)
+        let height = 1
+        let width =
+          rect2.bottom > rect1.bottom
+            ? Math.min(Math.abs(xLeft - rect2.left), Math.abs(xLeft - rect2.right))
+            : Math.min(Math.abs(xLeft - rect1.left), Math.abs(xLeft - rect1.right))
+        let left = Math.min(xLeft, rect2.right, rect1.right)
+        createDashLine(width, height, top, left, 'y')
+      }
+      {
+        //left top
+        //right bottom
+        //width height
+        //上对上
+        let xTop = rect2.top > rect1.top ? rect1.top : rect2.top
+        let xLeft = rect2.top > rect1.top ? (rect2.left + rect2.right) / 2 : (rect1.left + rect1.right) / 2
+        let xHeight = Math.abs(rect2.top - rect1.top)
+        let xWidth = 1
+        createLine(xWidth, xHeight, xTop, xLeft, `${xHeight}px`, 'x')
+        //画虚线
+        let top = Math.min(rect1.top, rect2.top)
+        let height = 1
+        let width =
+          rect2.top > rect1.top
+            ? Math.min(Math.abs(xLeft - rect1.right), Math.abs(xLeft - rect1.left))
+            : Math.min(Math.abs(xLeft - rect2.right), Math.abs(xLeft - rect2.left))
+        let left = Math.min(xLeft, rect2.right, rect1.right)
+        createDashLine(width, height, top, left, 'y')
+      }
     }
   }
 }
