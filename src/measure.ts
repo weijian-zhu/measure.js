@@ -1,8 +1,9 @@
 import Rect from './rect'
+import config from './config'
 import { clearPlaceholderElement, createPlaceholderElement } from './placeholder'
 import { placeMark, removeMarks, placeMarkOutside } from './marker'
 
-let active = false
+let active: boolean = false
 let hoveringElement: HTMLElement | null = null
 let selectedElement: HTMLElement | null
 let targetElement: HTMLElement | null
@@ -13,14 +14,14 @@ import { Spacing as SpacingType } from './type'
 const Spacing: SpacingType = {
   start() {
     if (!document.body) {
-      console.warn(`Unable to initialise, document.body does not exist.`)
+      console.warn(`初始化measure.js插件失败`)
       return
     }
 
     window.addEventListener('keydown', keyDownHandler)
     window.addEventListener('keyup', keyUpHandler)
     window.addEventListener('mousemove', cursorMovedHandler)
-  },
+  }
 }
 
 function keyDownHandler(e: KeyboardEvent) {
@@ -37,6 +38,7 @@ function keyDownHandler(e: KeyboardEvent) {
     active = true
 
     setSelectedElement()
+    //使用插件中禁用滚动
     preventPageScroll(true)
   }
 
@@ -51,7 +53,7 @@ function keyUpHandler(e: KeyboardEvent) {
       () => {
         cleanUp()
       },
-      delayedDismiss ? 3000000 : 0,
+      delayedDismiss ? 3000000 : 0
     )
   }
 }
@@ -91,40 +93,23 @@ function cursorMovedHandler(e: MouseEvent) {
 
       removeMarks()
 
-      let top: number, bottom: number, left: number, right: number, outside: boolean
+      let top: number, bottom: number, left: number, right: number
 
       //select dom和target dom之间是否有接触或者在内部
       if (selected.containing(target) || selected.inside(target) || selected.colliding(target)) {
-        // if(selected.containing(target)){
-        //   console.log('containing');
-        // }
-        // if(selected.inside(target)){
-        //   console.log('inside');
-        // }
-        // if(selected.colliding(target)){
-        //   console.log('colliding');
-        // }
-
-        // console.log(`containing || inside || colliding`);
-
         top = Math.round(Math.abs(selectedElementRect.top - targetElementRect.top))
         bottom = Math.round(Math.abs(selectedElementRect.bottom - targetElementRect.bottom))
         left = Math.round(Math.abs(selectedElementRect.left - targetElementRect.left))
         right = Math.round(Math.abs(selectedElementRect.right - targetElementRect.right))
-        outside = false
-        console.log('有接触或者内部')
-        placeMark(selected, target, 'top', `${top}px`, outside)
-        placeMark(selected, target, 'bottom', `${bottom}px`, outside)
-        placeMark(selected, target, 'left', `${left}px`, outside)
-        placeMark(selected, target, 'right', `${right}px`, outside)
+        placeMark(selected, target, 'top', `${top}px`)
+        placeMark(selected, target, 'bottom', `${bottom}px`)
+        placeMark(selected, target, 'left', `${left}px`)
+        placeMark(selected, target, 'right', `${right}px`)
       } else {
-        console.log(`outside`)
         top = Math.round(Math.abs(selectedElementRect.top - targetElementRect.bottom))
         bottom = Math.round(Math.abs(selectedElementRect.bottom - targetElementRect.top))
         left = Math.round(Math.abs(selectedElementRect.left - targetElementRect.right))
         right = Math.round(Math.abs(selectedElementRect.right - targetElementRect.left))
-        outside = true
-
         placeMarkOutside(selected, target, 'top', `${top}px`)
       }
     }
@@ -138,7 +123,14 @@ function setSelectedElement(): void {
 
     const rect = selectedElement.getBoundingClientRect()
 
-    createPlaceholderElement('selected', rect.width, rect.height, rect.top, rect.left, `#ED5666`)
+    createPlaceholderElement(
+      'selected',
+      rect.width,
+      rect.height,
+      rect.top,
+      rect.left,
+      config.selectedDomBorderColor
+    )
   }
 }
 
@@ -152,11 +144,22 @@ function setTargetElement(): Promise<void> {
       targetElement = null
       return
     }
-    if (hoveringElement && hoveringElement !== selectedElement && hoveringElement !== targetElement) {
+    if (
+      hoveringElement &&
+      hoveringElement !== selectedElement &&
+      hoveringElement !== targetElement
+    ) {
       targetElement = hoveringElement
       clearPlaceholderElement('target')
       const rect = targetElement.getBoundingClientRect()
-      createPlaceholderElement('target', rect.width, rect.height, rect.top, rect.left, '#0A91FC')
+      createPlaceholderElement(
+        'target',
+        rect.width,
+        rect.height,
+        rect.top,
+        rect.left,
+        config.targetDomBorderColor
+      )
       resolve()
     }
   })
@@ -166,10 +169,10 @@ function preventPageScroll(active: boolean): void {
   if (active) {
     window.addEventListener('DOMMouseScroll', scrollingPreventDefault, false)
     window.addEventListener('wheel', scrollingPreventDefault, {
-      passive: false,
+      passive: false
     })
     window.addEventListener('mousewheel', scrollingPreventDefault, {
-      passive: false,
+      passive: false
     })
   } else {
     window.removeEventListener('DOMMouseScroll', scrollingPreventDefault)

@@ -1,50 +1,46 @@
-const webpack = require("webpack");
-const path = require("path");
-const TerserPlugin = require("terser-webpack-plugin");
-const { version } = require("./package.json");
+const webpack = require('webpack')
+const path = require('path')
+const TerserPlugin = require('terser-webpack-plugin')
+const { version } = require('./package.json')
 
-/**
- * @type {webpack.Configuration}
- */
 module.exports = {
-  entry: "./src/index.ts",
+  entry: './src/index.ts',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
     library: {
-      name: "measure",
-      type: "window",
-    },
+      name: 'measure',
+      type: 'window' //umd格式
+    }
   },
   resolve: {
-    extensions: [".ts", ".js", ".json"],
+    extensions: ['.ts', '.js', '.json']
   },
   module: {
     rules: [
       {
         test: /\.(t|j)s$/,
-        loader: "babel-loader",
-        exclude: /(node_modules)/,
-      },
-      
-    ],
+        loader: 'babel-loader',
+        exclude: /(node_modules)/
+      }
+    ]
   },
   optimization: {
     minimizer: [
       new TerserPlugin({
         terserOptions: {
           compress: {
-            pure_funcs: ["console.info", "console.debug", "console.log"],
-          },
+            pure_funcs: ['console.info', 'console.debug', 'console.log']
+          }
         },
-        extractComments: false,
-      }),
-    ],
+        extractComments: false
+      })
+    ]
   },
   plugins: [
     new webpack.BannerPlugin({
       banner: `/*!\n * measure.js v${version}\n * Copyright (c) 2021 weijian zhu\n * Released under the MIT License.\n*/`,
-      raw: true,
-    }),
-  ],
-};
+      raw: true
+    })
+  ]
+}

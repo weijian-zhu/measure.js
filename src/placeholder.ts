@@ -1,6 +1,14 @@
-import { PlaceholderType } from './type'
+import type { PlaceholderType } from './type'
+import config from './config'
 
-export function createPlaceholderElement(type: PlaceholderType, width: number, height: number, top: number, left: number, color: string): void {
+export function createPlaceholderElement(
+  type: PlaceholderType,
+  width: number,
+  height: number,
+  top: number,
+  left: number,
+  color: string
+): void {
   //创建select dom的框框
 
   const placeholder: HTMLDivElement = document.createElement('div')
