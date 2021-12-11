@@ -152,15 +152,16 @@ export function placeMarkOutside(rect1: Rect, rect2: Rect, direction: Direction,
 
       {
         // 右对右的线
-        let xTop = rect2.left > rect1.left ? (rect1.top + rect1.bottom) / 2 : (rect2.top + rect2.bottom) / 2
-        let xLeft = rect2.left > rect1.left ? rect1.right : rect2.right
+        // let xTop = rect2.left > rect1.left ? (rect1.top + rect1.bottom) / 2 : (rect2.top + rect2.bottom) / 2
+        let xTop = rect2.right > rect1.right ? (rect1.top + rect1.bottom) / 2 : (rect2.top + rect2.bottom) / 2
+        let xLeft = rect2.right > rect1.right ? rect1.right : rect2.right
         let xHeight = 1
         let xWidth = Math.abs(rect2.right - rect1.right)
         createLine(xWidth, xHeight, xTop, xLeft, `${xWidth}px`, 'y')
         //画虚线
         let top = Math.min(xTop, rect2.bottom, rect1.bottom)
         let height =
-          rect2.left > rect1.left
+          rect2.right > rect1.right
             ? Math.min(Math.abs(xTop - rect2.top), Math.abs(xTop - rect2.bottom))
             : Math.min(Math.abs(xTop - rect1.top), Math.abs(xTop - rect1.bottom))
         let width = 1
