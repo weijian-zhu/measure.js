@@ -1,4 +1,4 @@
-import Spacing from './spacing'
+import Measure from './measure'
 
-// Simple, Start.
-Spacing.start()
+//入口
+Measure.start()

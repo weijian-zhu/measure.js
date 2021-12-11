@@ -15,15 +15,25 @@ export default class Rect {
     this.bottom = rect.bottom
   }
 
-  colliding(other: Rect) {
-    return !(this.top > other.bottom || this.right < other.left || this.bottom < other.top || this.left > other.right)
+  colliding(other: Rect): boolean {
+    return !(
+      this.top > other.bottom ||
+      this.right < other.left ||
+      this.bottom < other.top ||
+      this.left > other.right
+    )
   }
 
-  containing(other: Rect) {
-    return this.left <= other.left && other.left < this.width && this.top <= other.top && other.top < this.height
+  containing(other: Rect): boolean {
+    return (
+      this.left <= other.left &&
+      other.left < this.width &&
+      this.top <= other.top &&
+      other.top < this.height
+    )
   }
 
-  inside(other: Rect) {
+  inside(other: Rect): boolean {
     return (
       other.top <= this.top &&
       this.top <= other.bottom &&
@@ -36,11 +46,11 @@ export default class Rect {
     )
   }
 
-  outsideAndNOIntersectionY(other: Rect) {
+  outsideAndNOIntersectionY(other: Rect): boolean {
     return this.left > other.right || other.left > this.right
   }
 
-  outsideAndNOIntersectionX(other: Rect) {
+  outsideAndNOIntersectionX(other: Rect): boolean {
     return this.top > other.bottom || other.top > this.bottom
   }
 
@@ -49,12 +59,12 @@ export default class Rect {
   }
 
   //垂直方向上是否包含另外一个
-  outsideIncludeY(other: Rect) {
+  outsideIncludeY(other: Rect): boolean {
     return this.right >= other.right && this.left <= other.left
   }
 
   //水平方向上是否包含另外一个
-  outsideIncludeX(other: Rect) {
+  outsideIncludeX(other: Rect): boolean {
     return this.bottom >= other.bottom && this.top <= other.top
   }
 }
