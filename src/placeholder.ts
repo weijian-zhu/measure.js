@@ -12,7 +12,7 @@ export function createPlaceholderElement(
   //创建select dom的框框
 
   const placeholder: HTMLDivElement = document.createElement('div')
-  placeholder.classList.add(`spacing-js-${type}-placeholder`)
+  placeholder.classList.add(`measure-js-${type}-placeholder`)
   placeholder.style.border = `1px solid ${color}`
   placeholder.style.position = 'fixed'
   placeholder.style.background = 'none'
@@ -60,5 +60,5 @@ export function createPlaceholderElement(
 }
 
 export function clearPlaceholderElement(type: PlaceholderType): void {
-  document.querySelector(`.spacing-js-${type}-placeholder`)?.remove()
+  document.querySelector(`.measure-js-${type}-placeholder`)?.remove()
 }

@@ -13,7 +13,7 @@ function createLine(
   let marker: HTMLSpanElement = document.createElement('span')
   marker.style.backgroundColor = config.markerColor
   marker.style.position = 'fixed'
-  marker.classList.add(`spacing-js-marker`)
+  marker.classList.add(`measure-js-marker`)
   marker.style.width = `${width}px`
   marker.style.height = `${height}px`
 
@@ -34,7 +34,7 @@ function createLine(
   marker.style.boxSizing = 'content-box'
 
   let value: HTMLSpanElement = document.createElement('span')
-  value.classList.add(`spacing-js-value`)
+  value.classList.add(`measure-js-value`)
   value.style.backgroundColor = config.markerColor
   value.style.color = 'white'
   value.style.fontSize = '10px'
@@ -95,7 +95,7 @@ function createDashLine(
 ) {
   let marker: HTMLSpanElement = document.createElement('span')
   marker.style.position = 'fixed'
-  marker.classList.add(`spacing-js-dashed-marker`)
+  marker.classList.add(`measure-js-dashed-marker`)
   marker.style.width = `${width}px`
   marker.style.height = `${height}px`
 
@@ -308,15 +308,15 @@ export function placeMark(rect1: Rect, rect2: Rect, direction: Direction, value:
 }
 
 export function removeMarks(): void {
-  document.querySelectorAll<HTMLSpanElement>('.spacing-js-marker').forEach(function (element) {
+  document.querySelectorAll<HTMLSpanElement>('.measure-js-marker').forEach(function (element) {
     element.remove()
   })
   document
-    .querySelectorAll<HTMLSpanElement>('.spacing-js-dashed-marker')
+    .querySelectorAll<HTMLSpanElement>('.measure-js-dashed-marker')
     .forEach(function (element) {
       element.remove()
     })
-  document.querySelectorAll<HTMLSpanElement>('.spacing-js-value').forEach(function (element) {
+  document.querySelectorAll<HTMLSpanElement>('.measure-js-value').forEach(function (element) {
     element.remove()
   })
 }
