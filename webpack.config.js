@@ -10,9 +10,10 @@ module.exports = {
     filename: 'bundle.js',
     library: {
       name: 'measure',
-      type: 'window' //umd格式
+      type: 'window'
     }
   },
+  devtool: 'source-map',
   resolve: {
     extensions: ['.ts', '.js', '.json']
   },
