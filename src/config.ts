@@ -4,5 +4,4 @@ const config = {
   targetDomBorderColor: '#0A91FC',
   markerColor: '#ED5666'
 }
-
 export default config

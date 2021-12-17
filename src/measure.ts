@@ -9,15 +9,27 @@ let selectedElement: HTMLElement | null
 let targetElement: HTMLElement | null
 let delayedDismiss = false
 let delayedRef: ReturnType<typeof setTimeout> | null = null
-import { Spacing as SpacingType } from './type'
+import type { Measuring as MeasuringType } from './type'
 
-const Spacing: SpacingType = {
+const Measuring: MeasuringType = {
   start() {
     if (!document.body) {
       console.warn(`初始化measure.js插件失败`)
       return
     }
 
+    if (window.$Measure) {
+      window.removeEventListener('keydown', window.$Measure.keyDownHandler)
+      window.removeEventListener('keyup', window.$Measure.keyUpHandler)
+      window.removeEventListener('mousemove', window.$Measure.cursorMovedHandler)
+      window.$Measure = null
+      return
+    }
+    window.$Measure = {
+      keyDownHandler,
+      keyUpHandler,
+      cursorMovedHandler
+    }
     window.addEventListener('keydown', keyDownHandler)
     window.addEventListener('keyup', keyUpHandler)
     window.addEventListener('mousemove', cursorMovedHandler)
@@ -185,4 +197,4 @@ function scrollingPreventDefault(e: Event): void {
   e.preventDefault()
 }
 
-export default Spacing
+export default Measuring
