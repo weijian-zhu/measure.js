@@ -13,7 +13,7 @@ module.exports = {
       type: 'window'
     }
   },
-  devtool: 'source-map',
+  // devtool: 'source-map',
   resolve: {
     extensions: ['.ts', '.js', '.json']
   },

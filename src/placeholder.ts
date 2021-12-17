@@ -1,15 +1,14 @@
 import type { PlaceholderType } from './type'
 import config from './config'
+import Rect from './rect'
 
 export function createPlaceholderElement(
   type: PlaceholderType,
-  width: number,
-  height: number,
-  top: number,
-  left: number,
+  rect: DOMRect,
   color: string
 ): void {
-  //创建select dom的框框
+  const { width, height, top, left } = rect
+  //创建select dom和target dom的框框
 
   const placeholder: HTMLDivElement = document.createElement('div')
   placeholder.classList.add(`measure-js-${type}-placeholder`)
@@ -28,7 +27,13 @@ export function createPlaceholderElement(
   placeholder.style.boxSizing = 'content-box'
   document.body.appendChild(placeholder)
   //创建尺寸展示文本
+
+  if (type === 'target') {
+    clearPlaceholderElementDimension('selected')
+    return
+  }
   const dimension: HTMLSpanElement = document.createElement('span')
+  dimension.classList.add(`measure-js-${type}-dimension`)
   dimension.style.background = color
   dimension.style.position = 'fixed'
   dimension.style.display = 'inline-block'
@@ -61,4 +66,7 @@ export function createPlaceholderElement(
 
 export function clearPlaceholderElement(type: PlaceholderType): void {
   document.querySelector(`.measure-js-${type}-placeholder`)?.remove()
+}
+export function clearPlaceholderElementDimension(type: PlaceholderType): void {
+  document.querySelector(`.measure-js-${type}-dimension`)?.remove()
 }

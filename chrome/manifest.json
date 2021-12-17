@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "MeasureJS",
+  "version": "1.0.0",
+  "action": {},
+  "description": "Measure the spacing between elements on webpage. Hold down Alt (Windows) / Option (Mac) key, and move the cursor.",
+  "icons": {},
+  "author": "weijian zhu",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
