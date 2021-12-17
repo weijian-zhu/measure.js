@@ -17,21 +17,25 @@ function createLine(
   marker.style.width = `${width}px`
   marker.style.height = `${height}px`
 
-  if (border === 'x') {
-    marker.style.borderLeft = '1px solid rgba(255, 255, 255, .8)'
-    marker.style.borderRight = '1px solid rgba(255, 255, 255, .8)'
-  }
+  // if (border === 'x') {
+  //   marker.style.borderLeft = '1px solid rgba(255, 255, 255, .8)'
+  //   marker.style.borderRight = '1px solid rgba(255, 255, 255, .8)'
+  // }
 
-  if (border === 'y') {
-    marker.style.borderTop = '1px solid rgba(255, 255, 255, .8)'
-    marker.style.borderBottom = '1px solid rgba(255, 255, 255, .8)'
-  }
+  // if (border === 'y') {
+  //   marker.style.borderTop = '1px solid rgba(255, 255, 255, .8)'
+  //   marker.style.borderBottom = '1px solid rgba(255, 255, 255, .8)'
+  // }
 
   marker.style.pointerEvents = 'none'
   marker.style.top = `${top}px`
   marker.style.left = `${left}px`
   marker.style.zIndex = '9998'
   marker.style.boxSizing = 'content-box'
+  document.body.appendChild(marker)
+
+  //0px,不显示text文本
+  if (!parseInt(text)) return
 
   let value: HTMLSpanElement = document.createElement('span')
   value.classList.add(`measure-js-value`)
@@ -82,7 +86,6 @@ function createLine(
     value.style.left = `${leftOffset}px`
   }
 
-  document.body.appendChild(marker)
   document.body.appendChild(value)
 }
 
@@ -308,14 +311,17 @@ export function placeMark(rect1: Rect, rect2: Rect, direction: Direction, value:
 }
 
 export function removeMarks(): void {
+  //实线
   document.querySelectorAll<HTMLSpanElement>('.measure-js-marker').forEach(function (element) {
     element.remove()
   })
+  //虚线
   document
     .querySelectorAll<HTMLSpanElement>('.measure-js-dashed-marker')
     .forEach(function (element) {
       element.remove()
     })
+  //线上文字
   document.querySelectorAll<HTMLSpanElement>('.measure-js-value').forEach(function (element) {
     element.remove()
   })

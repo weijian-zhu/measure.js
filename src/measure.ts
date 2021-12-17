@@ -129,20 +129,11 @@ function cursorMovedHandler(e: MouseEvent) {
 }
 
 function setSelectedElement(): void {
-  if (hoveringElement && hoveringElement !== selectedElement) {
+  if (hoveringElement) {
     selectedElement = hoveringElement
     clearPlaceholderElement('selected')
-
     const rect = selectedElement.getBoundingClientRect()
-
-    createPlaceholderElement(
-      'selected',
-      rect.width,
-      rect.height,
-      rect.top,
-      rect.left,
-      config.selectedDomBorderColor
-    )
+    createPlaceholderElement('selected', rect, config.selectedDomBorderColor)
   }
 }
 
@@ -151,8 +142,10 @@ function setTargetElement(): Promise<void> {
     //进入到这里一定是active=true的状态
     //如果hover = select，清空target所有的状态
     if (hoveringElement === selectedElement) {
-      clearPlaceholderElement('target')
       removeMarks()
+      clearPlaceholderElement('target')
+      clearPlaceholderElement('selected')
+      setSelectedElement()
       targetElement = null
       return
     }
@@ -164,14 +157,7 @@ function setTargetElement(): Promise<void> {
       targetElement = hoveringElement
       clearPlaceholderElement('target')
       const rect = targetElement.getBoundingClientRect()
-      createPlaceholderElement(
-        'target',
-        rect.width,
-        rect.height,
-        rect.top,
-        rect.left,
-        config.targetDomBorderColor
-      )
+      createPlaceholderElement('target', rect, config.targetDomBorderColor)
       resolve()
     }
   })
