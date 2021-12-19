@@ -9,7 +9,7 @@ A JavaScript tool designed to help develop more accurate and efficient restorati
 
 ![](./assets/example1.png)
 
-Read this document in other languages: [English](README.md), [简体中文](README.zh-Hans.md).
+Read this document in other languages: [English](README.md), [简体中文](README.zh.md).
 
 ## How to use
 
