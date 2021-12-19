@@ -4,7 +4,6 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "eslint.alwaysShowStatus": true,
-  "prettier.eslintIntegration": true,
   "eslint.autoFixOnSave": true,
   "javascript.validate.enable": false,
   "editor.codeActionsOnSave": {
