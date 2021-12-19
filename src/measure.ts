@@ -65,7 +65,7 @@ function keyUpHandler(e: KeyboardEvent) {
       () => {
         cleanUp()
       },
-      delayedDismiss ? 3000000 : 0
+      delayedDismiss ? 5000 : 0
     )
   }
 }
