@@ -9,7 +9,7 @@
 
 ![](./assets/example1.png)
 
-阅读本文档的其他语言: [English](README.en.md), [简体中文](README.zh.md).
+阅读本文档的其他语言: [English](README.md), [简体中文](README.zh.md).
 
 ## 如何使用
 
