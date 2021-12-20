@@ -23,7 +23,7 @@ Hold down with <kbd>Shift</kbd> key will delay the dismiss of measurement result
 
 ## Chrome Extension
 
-Drag and drop the Chrome directory in your project into [Plug-in extension](chrome://extensions/)中. You can use it as a Chrome plugin
+Drag and drop the Chrome directory in your project into [Plug-in extension](chrome://extensions/). You can use it as a Chrome plugin
 ![](./assets/install.png)
 
 ## demo
