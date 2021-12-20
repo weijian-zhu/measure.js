@@ -39,4 +39,4 @@ You are free to fork the repository and submit pull requests. Bug reports in [Gi
 
 ## License
 
-Spacing.js is [MIT Licensed](LICENSE).
+Measure.js is [MIT Licensed](LICENSE).
