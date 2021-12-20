@@ -23,7 +23,7 @@ Hold down with <kbd>Shift</kbd> key will delay the dismiss of measurement result
 
 ## Chrome Extension
 
-Drag and drop the Chrome directory in your project into [Plug-in extension](chrome://extensions/)中. You can use it as a Chrome plugin
+Drag and drop the Chrome directory in your project into [Plug-in extension](chrome://extensions/). You can use it as a Chrome plugin
 ![](./assets/install.png)
 
 ## demo
@@ -39,4 +39,4 @@ You are free to fork the repository and submit pull requests. Bug reports in [Gi
 
 ## License
 
-Spacing.js is [MIT Licensed](LICENSE).
+Measure.js is [MIT Licensed](LICENSE).
