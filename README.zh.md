@@ -1,9 +1,9 @@
 # Measure JS
 
-![GitHub Stars](https://img.shields.io/github/stars/zhuweijian666/measure.js)
-![Github Forks](https://img.shields.io/github/forks/zhuweijian666/measure.js)
-![GitHub Open Issues](https://img.shields.io/github/issues/zhuweijian666/measure.js)
-![License](https://img.shields.io/github/license/zhuweijian666/measure.js)
+![GitHub Stars](https://img.shields.io/github/stars/weijian-zhu/measure.js)
+![Github Forks](https://img.shields.io/github/forks/weijian-zhu/measure.js)
+![GitHub Open Issues](https://img.shields.io/github/issues/weijian-zhu/measure.js)
+![License](https://img.shields.io/github/license/weijian-zhu/measure.js)
 
 一个 JavaScript 工具,旨在帮助开发更精准高效的还原设计图,帮助设计师更方便的完成 UI 走查,帮助测试更早的测出问题.
 
@@ -35,7 +35,7 @@
 
 ## Contribute
 
-您可以自由地 fork 这个存储库并提交 pull 请求。bug 报告在[GitHub Issues](https://github.com/zhuweijian666/measure.js/issues).
+您可以自由地 fork 这个存储库并提交 pull 请求。bug 报告在[GitHub Issues](https://github.com/weijian-zhu/measure.js/issues).
 
 ## License
 

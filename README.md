@@ -1,9 +1,9 @@
 # Measure JS
 
-![GitHub Stars](https://img.shields.io/github/stars/zhuweijian666/measure.js)
-![Github Forks](https://img.shields.io/github/forks/zhuweijian666/measure.js)
-![GitHub Open Issues](https://img.shields.io/github/issues/zhuweijian666/measure.js)
-![License](https://img.shields.io/github/license/zhuweijian666/measure.js)
+![GitHub Stars](https://img.shields.io/github/stars/weijian-zhu/measure.js)
+![Github Forks](https://img.shields.io/github/forks/weijian-zhu/measure.js)
+![GitHub Open Issues](https://img.shields.io/github/issues/weijian-zhu/measure.js)
+![License](https://img.shields.io/github/license/weijian-zhu/measure.js)
 
 A JavaScript tool designed to help develop more accurate and efficient restoration design, help designers more easily complete UI walkthroughs, help test earlier detection of problems.
 
@@ -35,7 +35,7 @@ Drag and drop the Chrome directory in your project into [Plug-in extension](chro
 
 ## Contribute
 
-You are free to fork the repository and submit pull requests. Bug reports in [GitHub Issues](https://github.com/zhuweijian666/measure.js/issues).
+You are free to fork the repository and submit pull requests. Bug reports in [GitHub Issues](https://github.com/weijian-zhu/measure.js/issues).
 
 ## License
 
