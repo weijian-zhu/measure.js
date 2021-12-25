@@ -1,23 +1,27 @@
-let isRun = false
+let isRunMap = {}
 chrome.action.onClicked.addListener(tab => {
-  chrome.action.setBadgeBackgroundColor({
-    color: '#ED5666',
-    tabId: tab.id
-  })
+  console.log(tab.id, isRunMap, isRunMap[tab.id])
+
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     files: ['bundle.js']
   })
-  if (isRun) {
-    chrome.action.setBadgeText({
-      text: '',
-      tabId: tab.id
-    })
+  let text = ''
+  if (isRunMap[tab.id]) {
+    isRunMap[tab.id] = false
   } else {
-    chrome.action.setBadgeText({
-      text: 'run',
-      tabId: tab.id
-    })
+    isRunMap[tab.id] = true
+    text = 'run'
   }
-  isRun = !isRun
+  chrome.action.setBadgeText({
+    text: text,
+    tabId: tab.id
+  })
+})
+
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+  if (changeInfo.status === 'loading') {
+    console.log(tabId)
+    isRunMap[tabId] = false
+  }
 })
