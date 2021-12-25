@@ -52,9 +52,17 @@ function createLine(
   value.style.height = '16px'
   value.style.textAlign = 'center'
   value.style.zIndex = '10000'
-  value.style.pointerEvents = 'none'
+  value.style.userSelect = 'none'
+  // value.style.pointerEvents = 'none'
   value.innerText = `${parseInt(text)}px`
   value.style.boxSizing = 'content-box'
+  //防止被其他文字覆盖
+  value.addEventListener('mouseenter', () => {
+    value.style.zIndex = '10001'
+  })
+  value.addEventListener('mouseleave', () => {
+    value.style.zIndex = '10000'
+  })
 
   if (border === 'x') {
     // 防止文字在屏幕外面

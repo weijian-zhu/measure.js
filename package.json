@@ -5,16 +5,15 @@
   "main": "./src/index.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhuweijian666/measure.js.git"
+    "url": "git+https://github.com/weijian-zhu/measure.js.git"
   },
   "bugs": {
-    "url": "https://github.com/zhuweijian666/measure.js/issues"
+    "url": "https://github.com/weijian-zhu/measure.js/issues"
   },
-  "homepage": "https://github.com/zhuweijian666/measure.js#measure-js",
+  "homepage": "https://github.com/weijian-zhu/measure.js#measure-js",
   "author": "weijian zhu",
   "scripts": {
-    "build": "webpack --mode development",
-    "prod": "webpack --mode production",
+    "build": "webpack --mode production",
     "dev": "webpack --watch --mode development",
     "format": "prettier --write '**/*.{ts,tsx,js,jsx,json,md}'",
     "ext": "node extensions.config.js"
