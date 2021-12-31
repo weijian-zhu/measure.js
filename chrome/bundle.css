@@ -1,0 +1,51 @@
+/*!
+ * measure.js v1.0.0
+ * Copyright (c) 2021 weijian zhu
+ * Released under the MIT License.
+*/
+#measure-js-css-viewer {
+  width: 300px;
+  background: white;
+  position: fixed;
+  border-radius: 5px;
+  box-shadow: 1;
+  box-shadow: -2px 2px 8px -2px rgba(0, 0, 0, 0.75);
+  padding: 8px;
+}
+.measure-js-css-viewer-item {
+  display: flex;
+  position: static;
+  justify-content: space-between;
+}
+
+.measure-js-css-viewer-item > span:nth-child(1) {
+  color: #aaa;
+  font-size: 15px;
+}
+
+.measure-js-css-viewer-item > span:nth-child(2) {
+  color: black;
+  font-size: 15px;
+}
+
+.measure-js-css-viewer-color {
+  position: static;
+  display: inline-block;
+  margin: 0 4px;
+  background-color: black;
+  width: 20px;
+  height: 10px;
+  position: relative;
+}
+
+.measure-js-css-viewer-color > input[type='color'] {
+  border: none;
+  padding: 0;
+  width: 0;
+  height: 0;
+  top: 10px;
+  left: 20px;
+  position: absolute;
+  visibility: hidden;
+}
+

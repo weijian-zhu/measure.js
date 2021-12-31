@@ -3,8 +3,12 @@ chrome.action.onClicked.addListener(tab => {
   console.log(tab.id, isRunMap, isRunMap[tab.id])
 
   chrome.scripting.executeScript({
-    target: { tabId: tab.id },
+    target: { tabId: tab.id, allFrames: true },
     files: ['bundle.js']
+  })
+  chrome.scripting.insertCSS({
+    target: { tabId: tab.id, allFrames: true },
+    files: ['bundle.css']
   })
   let text = ''
   if (isRunMap[tab.id]) {
