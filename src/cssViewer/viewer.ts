@@ -50,6 +50,7 @@ class Viewer {
     document.body.appendChild(div)
   }
 
+  //todo 性能待优化
   updateHtml() {
     const targetCss = window.getComputedStyle(this.targetDom)
     this.cssViewer!.innerHTML = `
@@ -129,8 +130,8 @@ let viewer: Viewer
 function openCssViewer(dom: HTMLElement, event: MouseEvent): Viewer {
   if (viewer) {
     viewer.targetDom = dom
-    viewer.show()
     viewer.SetPosition(event)
+    viewer.show()
     return viewer
   }
   viewer = new Viewer(dom)
