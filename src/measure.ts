@@ -2,15 +2,19 @@ import Rect from './rect'
 import config from './config'
 import { clearPlaceholderElement, createPlaceholderElement } from './placeholder'
 import { placeMark, removeMarks, placeMarkOutside } from './marker'
-
+import { openCssViewer } from './cssViewer/viewer'
+import type { Measuring as MeasuringType } from './type'
+import type { Viewer } from './cssViewer/viewer'
 let active: boolean = false
 let hoveringElement: HTMLElement | null = null
+let hoverMouseEvent: MouseEvent | null = null
 let selectedElement: HTMLElement | null
+let selectedElementRect: DOMRect //保存rect状态,性能优化
 let targetElement: HTMLElement | null
+let targetElementRect: DOMRect //保存rect状态
 let delayedDismiss = false
 let delayedRef: ReturnType<typeof setTimeout> | null = null
-import type { Measuring as MeasuringType } from './type'
-
+let cssViewer: Viewer
 const Measuring: MeasuringType = {
   start() {
     if (!document.body) {
@@ -50,22 +54,26 @@ function keyDownHandler(e: KeyboardEvent) {
     active = true
 
     setSelectedElement()
+    cssViewer = openCssViewer(selectedElement!, hoverMouseEvent!)
     //使用插件中禁用滚动
     preventPageScroll(true)
   }
 
-  if (e.shiftKey) delayedDismiss = true
+  if (e.shiftKey) {
+    delayedDismiss = true
+    cssViewer.freezePosition()
+  }
 }
 
 function keyUpHandler(e: KeyboardEvent) {
   if (e.key === 'Alt' && active) {
     active = false
-
     delayedRef = setTimeout(
       () => {
         cleanUp()
+        cssViewer.hide()
       },
-      delayedDismiss ? 5000 : 0
+      delayedDismiss ? 5000000 : 0
     )
   }
 }
@@ -80,25 +88,28 @@ function cleanUp(): void {
   targetElement = null
 
   removeMarks()
+  cssViewer.hide()
 
   preventPageScroll(false)
 }
 
 function cursorMovedHandler(e: MouseEvent) {
-  if (e.composedPath) {
-    //使用composedPath来检测悬停元素是否支持阴影DOM
-    hoveringElement = e.composedPath()[0] as HTMLElement
-  } else {
-    // 兼容方案
-    hoveringElement = e.target as HTMLElement
-  }
+  hoverMouseEvent = e
+  // if (e.composedPath) {
+  //   //使用composedPath来检测悬停元素是否支持阴影DOM
+  //   hoveringElement = e.composedPath()[0] as HTMLElement
+  // } else {
+  //   // 兼容方案
+  //   hoveringElement = e.target as HTMLElement
+  // }
+  hoveringElement = e.target as HTMLElement
   if (!active) return
 
   setTargetElement().then(() => {
     if (selectedElement != null && targetElement != null) {
       // 框选出select dom和target dom后，计算两者的间距
-      const selectedElementRect: DOMRect = selectedElement.getBoundingClientRect()
-      const targetElementRect: DOMRect = targetElement.getBoundingClientRect()
+      // const selectedElementRect: DOMRect = selectedElement.getBoundingClientRect()
+      // const targetElementRect: DOMRect = targetElement.getBoundingClientRect()
 
       const selected: Rect = new Rect(selectedElementRect)
       const target: Rect = new Rect(targetElementRect)
@@ -132,8 +143,8 @@ function setSelectedElement(): void {
   if (hoveringElement) {
     selectedElement = hoveringElement
     clearPlaceholderElement('selected')
-    const rect = selectedElement.getBoundingClientRect()
-    createPlaceholderElement('selected', rect, config.selectedDomBorderColor)
+    selectedElementRect = selectedElement.getBoundingClientRect()
+    createPlaceholderElement('selected', selectedElementRect, config.selectedDomBorderColor)
   }
 }
 
@@ -141,12 +152,13 @@ function setTargetElement(): Promise<void> {
   return new Promise((resolve, reject) => {
     //进入到这里一定是active=true的状态
     //如果hover = select，清空target所有的状态
-    if (hoveringElement === selectedElement) {
+    if (hoveringElement === selectedElement && targetElement) {
       removeMarks()
       clearPlaceholderElement('target')
       clearPlaceholderElement('selected')
       setSelectedElement()
       targetElement = null
+      cssViewer.show()
       return
     }
     if (
@@ -156,8 +168,9 @@ function setTargetElement(): Promise<void> {
     ) {
       targetElement = hoveringElement
       clearPlaceholderElement('target')
-      const rect = targetElement.getBoundingClientRect()
-      createPlaceholderElement('target', rect, config.targetDomBorderColor)
+      targetElementRect = targetElement.getBoundingClientRect()
+      createPlaceholderElement('target', targetElementRect, config.targetDomBorderColor)
+      cssViewer.hide()
       resolve()
     }
   })

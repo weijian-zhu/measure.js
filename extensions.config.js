@@ -11,6 +11,7 @@ const currentVersion = PackageJSON.version
 function build() {
   // 打包成chrome插件
   execSync(`cp dist/bundle.js chrome/bundle.js`)
+  execSync(`cp dist/main.css chrome/bundle.css`)
   ManifestJSON.version = currentVersion
   fs.writeFileSync(resolve('chrome/manifest.json'), JSON.stringify(ManifestJSON, null, 2), 'utf8')
   console.log('build complete!')
