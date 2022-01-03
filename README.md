@@ -7,7 +7,7 @@
 
 A JavaScript tool designed to help develop more accurate and efficient restoration design, help designers more easily complete UI walkthroughs, help test earlier detection of problems.
 
-![](./assets/demo.gif)
+![](./assets/demo2.gif)
 
 Read this document in other languages: [English](README.md), [简体中文](README.zh.md).
 
@@ -19,7 +19,7 @@ Read this document in other languages: [English](README.md), [简体中文](READ
 
 ## Special operation
 
-Hold down with <kbd>Shift</kbd> key will delay the dismiss of measurement results, so that we can take a screenshot easier.
+Hold down with <kbd>Shift</kbd> key will freeze the measurement results, so that we can take a screenshot easier.
 
 ## Chrome Extension
 
@@ -29,6 +29,7 @@ Drag and drop the Chrome directory in your project into [Plug-in extension](chro
 ## demo
 
 ![](./assets/icon.png)
+![](./assets/example4.png)
 ![](./assets/example1.png)
 ![](./assets/example2.png)
 ![](./assets/example3.png)

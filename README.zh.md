@@ -7,7 +7,7 @@
 
 一个 JavaScript 工具,旨在帮助开发更精准高效的还原设计图,帮助设计师更方便的完成 UI 走查,帮助测试更早的测出问题.
 
-![](./assets/demo.gif)
+![](./assets/demo2.gif)
 
 阅读本文档的其他语言: [English](README.md), [简体中文](README.zh.md).
 
@@ -19,7 +19,7 @@
 
 ## 特殊操作
 
-按下<kbd>Shift</kbd>键,将延迟测量结果的消失，这样我们可以更容易地采取截图。
+按下<kbd>Shift</kbd>键,将冻结测量结果，这样我们可以更容易地采取截图。
 
 ## Chrome 插件
 
@@ -29,6 +29,7 @@
 ## demo
 
 ![](./assets/icon.png)
+![](./assets/example4.png)
 ![](./assets/example1.png)
 ![](./assets/example2.png)
 ![](./assets/example3.png)
