@@ -130,8 +130,8 @@ let viewer: Viewer
 function openCssViewer(dom: HTMLElement, event: MouseEvent): Viewer {
   if (viewer) {
     viewer.targetDom = dom
-    viewer.SetPosition(event)
     viewer.show()
+    viewer.SetPosition(event)
     return viewer
   }
   viewer = new Viewer(dom)
