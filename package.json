@@ -1,6 +1,6 @@
 {
   "name": "measurejs",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Measure the distance between elements in a web page",
   "main": "./src/index.ts",
   "repository": {
