@@ -60,7 +60,7 @@ class Viewer {
                            ? `<label data-name="${name}" style="background-color:${targetCss[name]}" class="measure-js-css-viewer-color"><input type="color" /></label>`
                            : ''
                        }
-                       <span  style="outline:none;white-space:nowrap;" ${
+                       <span  style="outline:none;" ${
                          this._colorList.includes(name) ? 'contenteditable' : ''
                        }>${targetCss[name]}</span>
                        </span>

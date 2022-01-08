@@ -17,6 +17,8 @@ Read this document in other languages: [English](README.md), [简体中文](READ
 
 2. Move the mouse cursor to another element and the measurement results will be displayed.
 
+3. You can click on the color palette to select the color, or you can Enter the color value and press <kbd>Enter</kbd> to make it work
+
 ## Special operation
 
 Hold down with <kbd>Shift</kbd> key will freeze the measurement results, so that we can take a screenshot easier.
