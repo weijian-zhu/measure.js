@@ -1,9 +1,4 @@
-function transform(rgba: string) {
-  return rgba
-    .match(/\d+/g)
-    ?.slice(0, 3)
-    .reduce((pre, cur) => pre + parseInt(cur).toString(16), '#')
-}
+const tinycolor = require('tinycolor2')
 
 class Viewer {
   _cssList = ['color', 'backgroundColor', 'font', 'border-color']
@@ -65,7 +60,9 @@ class Viewer {
                            ? `<label data-name="${name}" style="background-color:${targetCss[name]}" class="measure-js-css-viewer-color"><input type="color" /></label>`
                            : ''
                        }
-                       ${targetCss[name]}
+                       <span  style="outline:none;" ${
+                         this._colorList.includes(name) ? 'contenteditable' : ''
+                       }>${targetCss[name]}</span>
                        </span>
                   </div>`
               )
@@ -80,12 +77,15 @@ class Viewer {
       '.measure-js-css-viewer-color'
     )
     allViewerColor.forEach(item => {
-      item.children[0].addEventListener('input', function (event) {
-        console.log(event.target.value)
-        item.style.backgroundColor = event.target.value
-        targetDom.style[item.dataset?.name!] = event.target.value
+      item.children[0].addEventListener('input', (event: any) => {
+        const value = event.target.value
+        item.style.backgroundColor = value
+        targetDom.style[item.dataset?.name!] = value
+        item.nextElementSibling!.innerHTML = value
       })
     })
+
+    this.cssViewer?.addEventListener('keydown', this.inputColor.bind(this))
   }
 
   initMouseMoveEvent() {
@@ -98,6 +98,24 @@ class Viewer {
 
   freezePosition() {
     this.isFreeze = true
+  }
+
+  inputColor(e: KeyboardEvent) {
+    const tagetDOm = e.target as HTMLElement
+    if (e.key === 'Enter' && tagetDOm.getAttribute('contenteditable') !== null) {
+      e.preventDefault()
+      const color1 = tinycolor(tagetDOm.innerHTML)
+      if (!color1.isValid()) {
+        //爆红提示用户颜色输入有误
+        tagetDOm.style.border = '1px solid red'
+        return
+      }
+      tagetDOm.style.border = 'none'
+      const rgba: string = color1.toString()
+      ;(tagetDOm.previousElementSibling as HTMLElement).style.backgroundColor = rgba
+      this.targetDom.style.backgroundColor = rgba
+      console.log(rgba)
+    }
   }
 
   SetPosition(e: MouseEvent) {

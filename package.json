@@ -1,6 +1,6 @@
 {
   "name": "measurejs",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Measure the distance between elements in a web page",
   "main": "./src/index.ts",
   "repository": {
@@ -35,5 +35,8 @@
     "webpack-cli": "^4.9.1"
   },
   "unpkg": "dist/bundle.js",
-  "jsdelivr": "dist/bundle.js"
+  "jsdelivr": "dist/bundle.js",
+  "dependencies": {
+    "tinycolor2": "^1.4.2"
+  }
 }
