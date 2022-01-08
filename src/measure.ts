@@ -25,6 +25,7 @@ const Measuring: MeasuringType = {
     if (window.$Measure) {
       window.removeEventListener('keydown', window.$Measure.keyDownHandler)
       window.removeEventListener('keyup', window.$Measure.keyUpHandler)
+
       window.removeEventListener('mousemove', window.$Measure.cursorMovedHandler)
       window.$Measure = null
       return
@@ -32,15 +33,20 @@ const Measuring: MeasuringType = {
     window.$Measure = {
       keyDownHandler,
       keyUpHandler,
+
       cursorMovedHandler
     }
     window.addEventListener('keydown', keyDownHandler)
     window.addEventListener('keyup', keyUpHandler)
+
     window.addEventListener('mousemove', cursorMovedHandler)
   }
 }
 
 function keyDownHandler(e: KeyboardEvent) {
+  //如果是在改色值则不做处理
+  if ((e.target as HTMLElement).getAttribute('contenteditable') !== null) return
+
   if (delayedDismiss) {
     cleanUp()
     if (delayedRef) {

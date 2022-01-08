@@ -35,5 +35,8 @@
     "webpack-cli": "^4.9.1"
   },
   "unpkg": "dist/bundle.js",
-  "jsdelivr": "dist/bundle.js"
+  "jsdelivr": "dist/bundle.js",
+  "dependencies": {
+    "tinycolor2": "^1.4.2"
+  }
 }
