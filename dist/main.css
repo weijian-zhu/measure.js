@@ -4,7 +4,7 @@
  * Released under the MIT License.
 */
 #measure-js-css-viewer {
-  z-index: 9998;
+  z-index: 99998;
   width: 300px;
   background: white;
   position: fixed;
@@ -30,6 +30,7 @@
 }
 
 .measure-js-css-viewer-color {
+  cursor: pointer;
   position: static;
   display: inline-block;
   margin: 0 4px;

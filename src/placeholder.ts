@@ -23,7 +23,7 @@ export function createPlaceholderElement(
   placeholder.style.top = `${top - 0.5}px`
   placeholder.style.left = `${left - 0.5}px`
   placeholder.style.pointerEvents = 'none'
-  placeholder.style.zIndex = '9999'
+  placeholder.style.zIndex = '99999'
   placeholder.style.boxSizing = 'content-box'
   document.body.appendChild(placeholder)
   //创建尺寸展示文本

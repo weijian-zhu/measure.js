@@ -30,7 +30,7 @@ function createLine(
   marker.style.pointerEvents = 'none'
   marker.style.top = `${top}px`
   marker.style.left = `${left}px`
-  marker.style.zIndex = '9998'
+  marker.style.zIndex = '99998'
   marker.style.boxSizing = 'content-box'
   document.body.appendChild(marker)
 
@@ -51,17 +51,17 @@ function createLine(
   value.style.lineHeight = '15px'
   value.style.height = '16px'
   value.style.textAlign = 'center'
-  value.style.zIndex = '10000'
+  value.style.zIndex = '100000'
   value.style.userSelect = 'none'
   // value.style.pointerEvents = 'none'
   value.innerText = `${parseInt(text)}px`
   value.style.boxSizing = 'content-box'
   //防止被其他文字覆盖
   value.addEventListener('mouseenter', () => {
-    value.style.zIndex = '10001'
+    value.style.zIndex = '100001'
   })
   value.addEventListener('mouseleave', () => {
-    value.style.zIndex = '10000'
+    value.style.zIndex = '100000'
   })
 
   if (border === 'x') {
@@ -123,7 +123,7 @@ function createDashLine(
   marker.style.pointerEvents = 'none'
   marker.style.top = `${top}px`
   marker.style.left = `${left}px`
-  marker.style.zIndex = '9998'
+  marker.style.zIndex = '99998'
   marker.style.boxSizing = 'content-box'
   document.body.appendChild(marker)
 }
@@ -132,7 +132,7 @@ export function placeMarkOutside(rect1: Rect, rect2: Rect, direction: Direction,
   //select dom 和 target dom 并集outside的情况
   if (rect1.outsideAndNOIntersection(rect2)) {
     //水平和垂直方向没有相交的情况
-    // 水平方向
+    //水平方向
     {
       let xTop = (rect1.top + rect1.bottom) / 2
       let xLeft = rect1.left > rect2.right ? rect2.right : rect1.right

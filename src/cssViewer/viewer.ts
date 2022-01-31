@@ -45,7 +45,7 @@ class Viewer {
     document.body.appendChild(div)
   }
 
-  //todo 性能待优化
+  //todo 性能待优化,暂无用户反馈性能问题
   updateHtml() {
     const targetCss = window.getComputedStyle(this.targetDom)
     this.cssViewer!.innerHTML = `
@@ -57,12 +57,16 @@ class Viewer {
                      <span>
                        ${
                          this._colorList.includes(name)
-                           ? `<label data-name="${name}" style="background-color:${targetCss[name]}" class="measure-js-css-viewer-color"><input type="color" /></label>`
+                           ? `<label data-name="${name}" style="background-color:${targetCss[name]}" class="measure-js-css-viewer-color"></label>`
                            : ''
                        }
                        <span  style="outline:none;" ${
                          this._colorList.includes(name) ? 'contenteditable' : ''
-                       }>${targetCss[name]}</span>
+                       }>${
+                  this._colorList.includes(name)
+                    ? tinycolor(targetCss[name]).toHex8String()
+                    : targetCss[name]
+                }</span>
                        </span>
                   </div>`
               )
@@ -77,11 +81,26 @@ class Viewer {
       '.measure-js-css-viewer-color'
     )
     allViewerColor.forEach(item => {
-      item.children[0].addEventListener('input', (event: any) => {
-        const value = event.target.value
-        item.style.backgroundColor = value
-        targetDom.style[item.dataset?.name!] = value
-        item.nextElementSibling!.innerHTML = value
+      //点击颜色区域，在rbga和16进制颜色中转换
+      item.addEventListener('click', function (this: HTMLElement, event: any) {
+        const input = this.nextElementSibling as HTMLElement
+        const colorText = input.innerHTML
+        const color1 = tinycolor(colorText)
+        if (!color1.isValid()) {
+          //爆红提示用户颜色输入有误
+          input.style.border = '1px solid red'
+          return
+        }
+        input.style.border = 'none'
+        let transferColor = ''
+        if (colorText.includes('#')) {
+          transferColor = color1.toRgbString()
+        } else {
+          transferColor = color1.toHex8String()
+        }
+        item.style.backgroundColor = transferColor
+        targetDom.style[item.dataset?.name!] = transferColor
+        input.innerHTML = transferColor
       })
     })
 
@@ -112,9 +131,9 @@ class Viewer {
       }
       tagetDOm.style.border = 'none'
       const rgba: string = color1.toString()
-      ;(tagetDOm.previousElementSibling as HTMLElement).style.backgroundColor = rgba
-      this.targetDom.style.backgroundColor = rgba
-      console.log(rgba)
+      const label = tagetDOm.previousElementSibling as HTMLElement
+      label.style.backgroundColor = rgba
+      this.targetDom.style[label.dataset?.name!] = rgba
     }
   }
 
@@ -124,8 +143,6 @@ class Viewer {
     if (!cssViewer || this.isFreeze) {
       return
     }
-
-    // cssViewer.style.display = 'block'
 
     let pageWidth = window.innerWidth
     let pageHeight = window.innerHeight
