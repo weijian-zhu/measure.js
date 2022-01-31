@@ -7,7 +7,7 @@
 
 一个 JavaScript 工具,旨在帮助开发更精准高效的还原设计图,帮助设计师更方便的完成 UI 走查,帮助测试更早的测出问题.
 
-![](./assets/demo2.gif)
+![](./assets/demo3.gif)
 
 阅读本文档的其他语言: [English](README.md), [简体中文](README.zh.md).
 
