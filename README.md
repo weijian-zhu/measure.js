@@ -7,7 +7,7 @@
 
 A JavaScript tool designed to help develop more accurate and efficient restoration design, help designers more easily complete UI walkthroughs, help test earlier detection of problems.
 
-![](./assets/demo2.gif)
+![](./assets/demo3.gif)
 
 Read this document in other languages: [English](README.md), [简体中文](README.zh.md).
 
