@@ -5,7 +5,7 @@
 ![GitHub Open Issues](https://img.shields.io/github/issues/weijian-zhu/measure.js)
 ![License](https://img.shields.io/github/license/weijian-zhu/measure.js)
 
-A JavaScript tool designed to help develop more accurate and efficient restoration design, help designers more easily complete UI walkthroughs, help test earlier detection of problems.
+A JavaScript tool, prototype Reference Blue Lake (you can also use blue Lake without blue Lake), is designed to help develop more accurate and efficient restore design drawings, help designers more easily complete UI walkthroughs, and help test earlier detection problems.
 
 ![](./assets/demo3.gif)
 
@@ -13,11 +13,13 @@ Read this document in other languages: [English](README.md), [简体中文](READ
 
 ## How to use
 
-1. Move your mouse cursor to an element, and press <kbd>Alt</kbd> on Windows or <kbd>⌥ Option</kbd> on a Mac.
+1. Move your mouse cursor to an element, and press <kbd>Alt</kbd> on Windows or <kbd>⌥ Option</kbd> on a Mac，will displays the cssViewer panel for the selected element.
 
 2. Move the mouse cursor to another element and the measurement results will be displayed.
 
-3. You can click on the color palette to select the color, or you can Enter the color value and press <kbd>Enter</kbd> to make it work
+3. In the cssViewer panel, you can Enter a color value (rGBA/hexadecimal format is supported) and press <kbd>Enter</kbd> for it to take effect
+
+4. Click on the color block area in the cssViewer panel to switch the color values between rgba and hexadecimal
 
 ## Special operation
 
