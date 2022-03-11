@@ -23,8 +23,17 @@ Read this document in other languages: [English](README.md), [简体中文](READ
 
 ## Special operation
 
-1.Hold down with <kbd>Shift</kbd> key will freeze the measurement results, so that we can take a screenshot easier.
-2.After the measurement result is frozen, press <kbd>Alt</kbd> or press <kbd>⌥ Option</kbd> on the Mac to unfreeze the measurement result
+1. Hold down with <kbd>Shift</kbd> key will freeze the measurement results, so that we can take a screenshot easier.
+
+2. After the measurement result is frozen, press <kbd>Alt</kbd> or press <kbd>⌥ Option</kbd> on the Mac to unfreeze the measurement result
+
+## Warm tips
+
+If you need to take snapshots but cannot take snapshots because the shortcut keys of snapshots contain Alt, the solution is as follows:
+
+1. You can always press Alt and then press other keys to capture the screenshot
+
+2. First click the outside of the page to make the current page out of focus, and then go to the screenshot
 
 ## Chrome Extension
 
