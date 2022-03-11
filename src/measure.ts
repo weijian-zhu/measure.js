@@ -33,7 +33,6 @@ const Measuring: MeasuringType = {
     window.$Measure = {
       keyDownHandler,
       keyUpHandler,
-
       cursorMovedHandler
     }
     window.addEventListener('keydown', keyDownHandler)
@@ -47,15 +46,23 @@ function keyDownHandler(e: KeyboardEvent) {
   //如果是在改色值则不做处理
   if ((e.target as HTMLElement).getAttribute('contenteditable') !== null) return
 
-  if (delayedDismiss) {
-    cleanUp()
-    if (delayedRef) {
-      clearTimeout(delayedRef)
-      delayedRef = null
-    }
-  }
+  // if (delayedDismiss) {
+  //   cleanUp()
+  //   if (delayedRef) {
+  //     clearTimeout(delayedRef)
+  //     delayedRef = null
+  //   }
+  // }
 
   if (e.key === 'Alt' && !active) {
+    if (delayedDismiss) {
+      cleanUp()
+      if (delayedRef) {
+        clearTimeout(delayedRef)
+        delayedRef = null
+      }
+    }
+
     e.preventDefault()
     active = true
 
