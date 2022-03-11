@@ -23,7 +23,8 @@ Read this document in other languages: [English](README.md), [简体中文](READ
 
 ## Special operation
 
-Hold down with <kbd>Shift</kbd> key will freeze the measurement results, so that we can take a screenshot easier.
+1.Hold down with <kbd>Shift</kbd> key will freeze the measurement results, so that we can take a screenshot easier.
+2.After the measurement result is frozen, press <kbd>Alt</kbd> or press <kbd>⌥ Option</kbd> on the Mac to unfreeze the measurement result
 
 ## Chrome Extension
 
